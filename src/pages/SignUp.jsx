@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { db } from '../firebase.config'
-
+import { setDoc, doc, serverTimestamp } from 'firebase/firestore'
 import visibilityIcon from '../assets/svg/visibilityIcon.svg'
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg'
 import { async } from '@firebase/util'
@@ -39,6 +39,14 @@ function SignUp() {
             updateProfile(auth.currentUser, {
                 displayName: name //updating the displayName
             })
+
+            const formDataCopy = { ...formData } //this is the name, email and password
+            delete formDataCopy.password //this will delete the password from the object
+            formDataCopy.timestamp = serverTimestamp()
+
+            //this one return a promise 
+            await setDoc(doc(db, 'users', user.uid), formDataCopy)
+
 
             navigate('/')
         } catch (error) {
