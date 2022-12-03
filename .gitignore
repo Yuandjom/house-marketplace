@@ -34,3 +34,5 @@ _pdf
 .idea
 vendor/
 
+/src/firebase-config.js
+
