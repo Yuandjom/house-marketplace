@@ -1,8 +1,12 @@
 import React from 'react'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import { db } from '../firebase.config'
+
 import visibilityIcon from '../assets/svg/visibilityIcon.svg'
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg'
+import { async } from '@firebase/util'
 
 function SignUp() {
     const [showPassword, setShowPassword] = useState(false)
@@ -14,10 +18,33 @@ function SignUp() {
     })
 
     const onChange = (e) => { //this is to handle the event change 
-        setShowPassword((prevState) => ({
+        setFormData((prevState) => ({
             ...prevState,
             [e.target.id]: e.target.value //change the id based on the target value 
         }))
+    }
+
+    const onSubmit = async (e) => {
+        e.preventDefault()
+
+        try {
+            const auth = getAuth() //getting the auth value from getAuth
+
+            //registering the user
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+
+            //get the user 
+            const user = userCredential.user
+
+            updateProfile(auth.currentUser, {
+                displayName: name //updating the displayName
+            })
+
+            navigate('/')
+        } catch (error) {
+            console.log(error);
+        }
+
     }
 
     //destructure the form 
@@ -34,7 +61,7 @@ function SignUp() {
                     </p>
                 </header>
                 <main>
-                    <form>
+                    <form onSubmit={onSubmit}>
                         <input
                             type="text"
                             className="nameInput"
