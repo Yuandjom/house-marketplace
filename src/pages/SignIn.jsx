@@ -4,9 +4,11 @@ import 'react-toastify/dist/ReactToastify.css'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import OAuth from './OAuth'
 import visibilityIcon from '../assets/svg/visibilityIcon.svg'
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg'
 import { async } from '@firebase/util'
+
 
 
 function SignIn() {
@@ -101,7 +103,7 @@ function SignIn() {
                             </button>
                         </div>
                     </form>
-                    {/*Google OAuth */}
+                    <OAuth />
                     <Link to='/sign-up' className='registerLink'>
                         Sign Up Instead
                     </Link>
