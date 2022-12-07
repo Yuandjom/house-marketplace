@@ -8,6 +8,7 @@ import { db } from '../firebase.config'
 import { toast } from 'react-toastify'
 //bring the Spinner componenet when we are feteching
 import Spinner from '../components/Spinner'
+import ListingItem from '../components/ListingItem'
 
 function Category() {
     //set the component level state
@@ -68,7 +69,7 @@ function Category() {
                                         
                                         note that have to put the key here
                                     */ },
-                                    <h3 key={listing.id}>{listing.data.name}</h3>
+                                    <ListingItem listing={listing.data} id={listing.id} key={listing.id} />
                                 ))}
                             </ul>
                         </main>
