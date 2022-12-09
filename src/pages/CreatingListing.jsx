@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect, useRef } from 'react'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import Spinner from '../components/Spinner'
 
 function CreatingListing() {
@@ -51,9 +52,36 @@ function CreatingListing() {
         }
     }, [isMounted])
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault()
-        console.log(formData)
+
+        setLoading(true)
+
+        //to do the checks
+        if (discountedPrice >= regularPrice) {
+            setLoading(false)
+            toast.error('Discounted price needs to be less than regular price')
+            return
+        }
+        if (images.length > 6) {
+            setLoading(false)
+            toast.error('Max 6 images')
+            return
+        }
+
+        //do the geocoding 
+        let geolocation = {}
+        let location
+
+        if (geolocationEnabled) {
+            //when u have await u need async
+            const response = await fetch(``)
+        } else {
+            geolocation.lat = latitude
+            geolocation.lng = longitude
+            location = address
+        }
+        setLoading(false)
     }
     const onMutate = (e) => {
         let boolean = null
@@ -87,6 +115,7 @@ function CreatingListing() {
 
     }
 
+    //the loading is here from the setLoading
     if (loading) {
         return <Spinner />
     }
