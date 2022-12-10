@@ -12,6 +12,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## General info
 Users can sign-up/sign-in to their profiles and browse through their desired house listings. 
+### Explore page
+![image](https://user-images.githubusercontent.com/69751989/206859180-76f1e7bc-27c9-44e6-8e76-ddd3b7fe1ecf.png)
+### Offers page
+![image](https://user-images.githubusercontent.com/69751989/206859222-82789202-b7af-4525-a4ac-e43f6408ad86.png)
+### User login page
+![image](https://user-images.githubusercontent.com/69751989/206859241-b379180d-b840-4ca5-b5ad-170cb51c3d1a.png)
+
 
 ## Technologies
 Project is created with:
