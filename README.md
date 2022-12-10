@@ -35,6 +35,7 @@ $ npm start
 
 ## Features
 * Users can create/view/update/delete their house listings
+
 ![image](https://user-images.githubusercontent.com/69751989/206859332-d69a4581-3550-4b5c-bfe2-441e87a094e9.png)
 * A slider is also implemented to view house lisitngs
 
