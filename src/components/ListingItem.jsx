@@ -1,12 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { ReactComponent as DeleteIcon } from '../assets/svg/deleteIcon.svg'
+import { ReactComponent as EditIcon } from '../assets/svg/editIcon.svg'
 import bedIcon from '../assets/svg/bedIcon.svg'
 import bedtubIcon from '../assets/svg/bathtubIcon.svg'
 
 //ListingItem is going to take a couple of props 
 //need to destructure the props 
-function ListingItem({ listing, id, onDelete }) { //how to use the prop ah?
+function ListingItem({ listing, id, onEdit, onDelete }) { //how to use the prop ah?
     //note that the src img is from the database of firebase
     return (
         <li className='categoryListing'>
@@ -37,11 +38,14 @@ function ListingItem({ listing, id, onDelete }) { //how to use the prop ah?
                 </div>
             </Link>
 
+            {/**show if function is passed in */}
             {onDelete && (
                 <DeleteIcon className='removeIcon' fill='rgb(231, 76, 60)' onClick={
                     () => onDelete(listing.id, listing.name)
                 } />
             )}
+            {/**show if function is passed in */}
+            {onEdit && <EditIcon className='editIcon' onClick={() => onEdit(id)} />}
 
         </li>
     )
